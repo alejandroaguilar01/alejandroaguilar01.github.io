@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2024 a las 04:35:16
+-- Tiempo de generación: 08-06-2024 a las 03:28:08
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -33,6 +33,22 @@ CREATE TABLE `artista` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `artista`
+--
+
+INSERT INTO `artista` (`id`, `nombre`, `descripcion`) VALUES
+(1, 'doble p', 'corridos tumbados,dembow,trap'),
+(2, 'natanael cano', 'corridos tumbados'),
+(3, 'chalino', 'narcocorridos'),
+(4, 'luis R conriquez', 'corridos'),
+(5, 'milo', 'trap argentino'),
+(6, 'lomiiel', 'funk brasileño'),
+(7, 'victor medivil', 'dembow'),
+(8, 'alfa', 'dembow'),
+(9, 'bad bunny', 'reggaeton'),
+(10, 'vicente fernandez', 'rancheras');
 
 -- --------------------------------------------------------
 
@@ -85,6 +101,20 @@ CREATE TABLE `generos` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `generos`
+--
+
+INSERT INTO `generos` (`id`, `nombre`) VALUES
+(1, 'rock'),
+(2, 'pop'),
+(3, 'opera'),
+(4, 'banda'),
+(5, 'corridos'),
+(6, 'corridos tumbados'),
+(7, 'dembow'),
+(8, 'rap');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +126,15 @@ CREATE TABLE `membresias` (
   `descripcion` varchar(100) NOT NULL,
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `membresias`
+--
+
+INSERT INTO `membresias` (`id`, `descripcion`, `precio`) VALUES
+(1, 'version gratuita', 0),
+(2, 'plan Premium individual', 129),
+(3, 'plan Premium Duo', 169);
 
 -- --------------------------------------------------------
 
@@ -138,6 +177,22 @@ CREATE TABLE `usuarios` (
   `correo` varchar(150) NOT NULL,
   `membresia_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `membresia_id`) VALUES
+(1, 'alex', 'alex@gmail.com', 1),
+(2, 'fer', 'fer@gmail.com', 3),
+(3, 'alonso', 'alonso@gmail.com', 2),
+(4, 'angel', 'angel@gmail.com', 2),
+(5, 'jaime', 'jaime@gmail.com', 3),
+(6, 'luis', 'luis@gmail.com', 0),
+(7, 'hassan', 'hassan@gmail.com', 3),
+(8, 'nata', 'nata@gmail.com', 1),
+(9, 'cesar', 'cesar@gmail.com', 2),
+(10, 'jose', 'jose@gmail.com', 1);
 
 --
 -- Índices para tablas volcadas
@@ -215,7 +270,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `artista`
 --
 ALTER TABLE `artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `artistas_canciones`
@@ -239,13 +294,13 @@ ALTER TABLE `favoritas`
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `membresias`
 --
 ALTER TABLE `membresias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `playlists`
@@ -263,7 +318,7 @@ ALTER TABLE `playlist_canciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
@@ -281,6 +336,27 @@ ALTER TABLE `artistas_canciones`
 --
 ALTER TABLE `canciones`
   ADD CONSTRAINT `canciones_ibfk_1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`);
+
+--
+-- Filtros para la tabla `favoritas`
+--
+ALTER TABLE `favoritas`
+  ADD CONSTRAINT `favoritas_ibfk_1` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`),
+  ADD CONSTRAINT `favoritas_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `playlists`
+--
+ALTER TABLE `playlists`
+  ADD CONSTRAINT `playlists_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `playlist_canciones`
+--
+ALTER TABLE `playlist_canciones`
+  ADD CONSTRAINT `playlist_canciones_ibfk_1` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`),
+  ADD CONSTRAINT `playlist_canciones_ibfk_2` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`id`),
+  ADD CONSTRAINT `playlist_canciones_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
