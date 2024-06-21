@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto final parcial #3</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Proyecto final parcial 3</h1>
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(80, 19, 194); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT * FROM alumno;</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #1. <br>Obtener el listado de todos los alumnos de la Facultad.</p>
+                <img src="consuta1.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(19, 194, 121); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT curso.nombreDescriptivo , asignatura.nombre
+                    <br>FROM curso
+                    <br>INNER JOIN asignatura
+                    <br>ON curso.idCurso = asignatura.curso;</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #2. <br>Obtener el listado de cursos(nombre) y las asignaturas que tiene.</p>
+                <img src="consulta2.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+
+    <h3>COMMIT <BR>
+    Proyecto final 20/06/24</BR></h3>
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
