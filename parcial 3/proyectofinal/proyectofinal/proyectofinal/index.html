@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto final parcial #3</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Proyecto final parcial 3</h1>
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(80, 19, 194); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT * FROM alumno;</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #1. <br>Obtener el listado de todos los alumnos de la Facultad.</p>
+                <img src="consuta1.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(19, 194, 121); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT curso.nombreDescriptivo , asignatura.nombre
+                    <br>FROM curso
+                    <br>INNER JOIN asignatura
+                    <br>ON curso.idCurso = asignatura.curso;</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #2. <br>Obtener el listado de cursos(nombre) y las asignaturas que tiene.</p>
+                <img src="consulta2.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(194, 89, 19); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT alumno.nombre , alumno.apellido1, alumno.apellido2
+                    <br>FROM alumno
+                    <br>WHERE alumno.beca='si';</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #3. <br>Obtener el listado (NOMBRE Y APELLIDO) de alumnos que tengan beca</p>
+                <img src="consulta3.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(2, 80, 67); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT profesor.nombre , profesor.apellido1 , profesor.apellido2 , tlfcontactoprof.telefono
+                    <br>FROM profesor
+                    <br>INNER JOIN tlfcontactoprof
+                    <br>ON profesor.idProfesor=tlfcontactoprof.idProfesor;</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #4. <br>Obtener listado de profesores (NOMBRE , APELLIDO) y su numero de contacto.</p>
+                <img src="consulta4.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(97, 0, 0); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT alumno.nombre , alumno.apellido1
+                    <br>FROM alumno
+                    <br>INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno
+                    <br>INNER JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura
+                    <br>WHERE asignatura.nombre = "programacion"</h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #5. <br>Obtener listado de alumnos (TODOS LOS CAMPOS) que estan inscritos a la asignatura de programacion.</p>
+                <img src="consulta5.png" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(255, 238, 0); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #6. <br>Obtener listado de profesores y asignaturas que imparten.</p>
+                <img src="" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(243, 41, 152); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #7. <br>Mostrar la asignatura que tiene mas alumnos inscritos y su total.</p>
+                <img src="" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(57, 2, 94); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #8. <br>Obtener listado de alumnos que les da clase el profesor con id PR048(JOSE MANUEL),sin importar en que asignatura este inscrito.</p>
+                <img src="" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgba(0, 225, 255, 0.726); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #9. <br>Obtener listado de cursos ,con asignatura, y el maestro que las impoarte.</p>
+                <img src="" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <h4 class="card" style="color: rgb(202, 86, 8); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #10. <br>Obtener listado de alumnos ,con asignaturas que cursa ,profesor que la imparte y curso al que pertenece.</p>
+                <img src="" alt="" class="img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+
+    <h3>COMMIT <BR>
+    Proyecto final 21/06/24</BR></h3>
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
