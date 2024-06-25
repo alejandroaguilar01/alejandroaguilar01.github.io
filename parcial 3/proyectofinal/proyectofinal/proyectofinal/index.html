@@ -79,9 +79,12 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <h4 class="card" style="color: rgb(255, 238, 0); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <h4 class="card" style="color: rgb(255, 238, 0); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT profesor.*, asignatura.* 
+                    <br>FROM profesor 
+                    <br>INNER JOIN asignatura ON profesor.idProfesor = asignatura.coordinador 
+                    <br>ORDER BY profesor.nombre, asignatura.nombre</h4>
                 <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #6. <br>Obtener listado de profesores y asignaturas que imparten.</p>
-                <img src="" alt="" class="img-fluid">
+                <img src="consulta 6.png" alt="" class="img-fluid">
 
             </div>
         </div>
@@ -90,9 +93,12 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <h4 class="card" style="color: rgb(243, 41, 152); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <h4 class="card" style="color: rgb(243, 41, 152); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT asignatura.nombre AS nombre_asignatura, COUNT(matricula.idAlumno) AS total_alumnos_inscritos 
+                    <br>FROM asignatura 
+                    <br>INNER JOIN matricula ON asignatura.idAsignatura = matricula.idAsignatura 
+                    <br>GROUP BY asignatura.idAsignatura ORDER BY total_alumnos_inscritos DESC</h4>
                 <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #7. <br>Mostrar la asignatura que tiene mas alumnos inscritos y su total.</p>
-                <img src="" alt="" class="img-fluid">
+                <img src="consulta 7.png" alt="" class="img-fluid">
 
             </div>
         </div>
@@ -101,9 +107,12 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <h4 class="card" style="color: rgb(57, 2, 94); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <h4 class="card" style="color: rgb(57, 2, 94); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT alumno.* FROM alumno 
+                    <br>INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno 
+                    <br>INNER JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura 
+                    <br>WHERE asignatura.coordinador = 'PR016'</h4>
                 <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #8. <br>Obtener listado de alumnos que les da clase el profesor con id PR048(JOSE MANUEL),sin importar en que asignatura este inscrito.</p>
-                <img src="" alt="" class="img-fluid">
+                <img src="consulta 8.png" alt="" class="img-fluid">
 
             </div>
         </div>
@@ -112,9 +121,25 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <h4 class="card" style="color: rgba(0, 225, 255, 0.726); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <h4 class="card" style="color: rgba(0, 225, 255, 0.726); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT
+                    c.idCurso,
+                    c.nombreDescriptivo AS nombre_curso,
+                    a.idAsignatura,
+                    a.nombre AS nombre_asignatura,
+                    p.idProfesor,
+                    p.nombre AS nombre_profesor,
+                    p.apellido1 AS apellido1_profesor,
+                    p.apellido2 AS apellido2_profesor
+                    <br>FROM
+                    curso c
+                    <br>JOIN
+                    asignatura a ON c.idCurso = a.curso
+                    <br>JOIN
+                    impartir i ON a.idAsignatura = i.idAsignatura
+                    <br>JOIN
+                    profesor p ON i.idProfesor = p.idProfesor ORDER BY c.idCurso, a.idAsignatura, p.idProfesor;</h4>
                 <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #9. <br>Obtener listado de cursos ,con asignatura, y el maestro que las impoarte.</p>
-                <img src="" alt="" class="img-fluid">
+                <img src="consulta 9.png" alt="" class="img-fluid">
 
             </div>
         </div>
@@ -123,9 +148,35 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col">
-                <h4 class="card" style="color: rgb(202, 86, 8); font-family: Verdana, Geneva, Tahoma, sans-serif;"></h4>
+                <h4 class="card" style="color: rgb(202, 86, 8); font-family: Verdana, Geneva, Tahoma, sans-serif;">SELECT
+                    al.idAlumno,
+                    al.nombre AS nombre_alumno,
+                    al.apellido1 AS apellido1_alumno,
+                    al.apellido2 AS apellido2_alumno,
+                    a.idAsignatura,
+                    a.nombre AS nombre_asignatura,
+                    p.idProfesor,
+                    p.nombre AS nombre_profesor,
+                    p.apellido1 AS apellido1_profesor,
+                    p.apellido2 AS apellido2_profesor,
+                    c.idCurso,
+                    c.nombreDescriptivo AS nombre_curso
+                    <br>FROM
+                    alumno al
+                    <br>JOIN
+                    matricula m ON al.idAlumno = m.idAlumno
+                    <br>JOIN
+                    asignatura a ON m.idAsignatura = a.idAsignatura
+                    <br>JOIN
+                    impartir i ON a.idAsignatura = i.idAsignatura
+                    <br>JOIN
+                    profesor p ON i.idProfesor = p.idProfesor
+                    <br>JOIN
+                    curso c ON a.curso = c.idCurso
+                    <br>ORDER BY
+                    al.idAlumno, a.idAsignatura</h4>
                 <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">consulta #10. <br>Obtener listado de alumnos ,con asignaturas que cursa ,profesor que la imparte y curso al que pertenece.</p>
-                <img src="" alt="" class="img-fluid">
+                <img src="consulta 10.png" alt="" class="img-fluid">
 
             </div>
         </div>
@@ -133,7 +184,7 @@
 
 
     <h3>COMMIT <BR>
-    Proyecto final 21/06/24</BR></h3>
+    Proyecto final 24/06/24</BR></h3>
     <script src="js/bootstrap.js"></script>
 </body>
 </html>
